@@ -23,4 +23,5 @@ hall-sensor
 maxbotix
 	mounting things for Maxbotix ultrasonic rangefinders
 
-
+gyro-enclosure
+	configurable enclosure for gyroscopes, or other small boards
