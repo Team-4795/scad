@@ -1,15 +1,18 @@
+function mm(inches) = inches * 25.4;
+
 $fs = 0.01;
-width = 1.05;
-length = 0.8;
-height = 0.15;
-thickness = 0.05;
-hole_radius = 0.05;
-header_width = 0.6;
-header_length = 0.1;
+width         = mm(1.05);
+length        = mm(0.80);
+height        = mm(0.15);
+thickness     = mm(0.05);
+hole_radius   = mm(0.05);
+header_width  = mm(0.60);
+header_length = mm(0.10);
 round_corners = true;
 
 // some derived constants for later calculations
 radius = hole_radius + thickness;
+diam = radius * 2;
 x = (width / 2) - radius;
 y = (length / 2) - radius;
 
@@ -22,10 +25,10 @@ module corners()
         translate([-x,y,0.0]) cylinder(h=height, r=radius, center=true);
         translate([-x,-y,0.0]) cylinder(h=height, r=radius, center=true);
     } else {
-        translate([x,y,0.0]) cube([radius*2,radius*2,height], center=true);
-        translate([x,-y,0.0]) cube([radius*2,radius*2,height], center=true);
-        translate([-x,y,0.0]) cube([radius*2,radius*2,height], center=true);
-        translate([-x,-y,0.0]) cube([radius*2,radius*2,height], center=true);
+        translate([x,y,0.0]) cube([diam,diam,height], center=true);
+        translate([x,-y,0.0]) cube([diam,diam,height], center=true);
+        translate([-x,y,0.0]) cube([diam,diam,height], center=true);
+        translate([-x,-y,0.0]) cube([diam,diam,height], center=true);
     }
 }
 
@@ -75,5 +78,5 @@ module top_plate()
     }
 }
 
-translate([0.0,0.5,0.0]) top_plate();
-translate([0.0,-0.5,0.0]) bot_plate();
+translate([0.0,mm(0.5),0.0]) top_plate();
+translate([0.0,mm(-0.5),0.0]) bot_plate();
